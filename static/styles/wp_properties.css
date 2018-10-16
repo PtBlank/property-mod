@@ -712,7 +712,7 @@ ul.wpp_google_maps_infobox .wpp_google_maps_attribute_row span.value {
 #infowindow ul.infobox_child_property_list .infobox_child_property {
   margin-left: 5px;
 }
-#property_map img {
+#property_map .wpp_google_maps_left_col img {
   position: absolute;
   max-width: none;
   overflow-x: hidden;
