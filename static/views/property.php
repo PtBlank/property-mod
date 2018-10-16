@@ -29,7 +29,8 @@
       if(typeof jQuery.fn.fancybox == 'function') {
 
         jQuery("a.fancybox_image, .gallery-item a").fancybox({
-
+          'type': "image",
+          
           'transitionIn'  :  'elastic',
 
           'transitionOut'  :  'elastic',
@@ -42,7 +43,7 @@
 
         });
 
-      }
+
 
       initialize_this_map();
 
@@ -100,6 +101,10 @@
 
     document.getElementById('infowindow').parentNode.parentNode.style.overflow='hidden';
 
+    document.getElementById('infowindow').parentNode.parentNode.parentNode.classList.add('scrollable');
+
+
+
    });
 
 
@@ -139,6 +144,7 @@
           <div class="wpp_the_content"><b>In Building: </b><a href="<?php echo $post->parent_link; ?>"><b><?php echo $post->parent_title; ?></b></a></div>
           <br>
         <?php endif; ?>
+
 
         <?php if ( empty($wp_properties['property_groups']) || $wp_properties['configuration']['property_overview']['sort_stats_by_groups'] != 'true' ) : ?>
         <?php endif; ?>
@@ -231,7 +237,9 @@
       ?>   
         <?php if(WPP_F::get_coordinates()): ?>
 
+
           <div id="property_map" style="width:100%; height:450px"></div>
+
 
         <?php endif; ?>
 
@@ -263,6 +271,7 @@
       echo do_shortcode('[tabbyending]'); ?>  
 
       </div><!-- .entry-content -->
+
 
     </div><!-- #post-## -->
 

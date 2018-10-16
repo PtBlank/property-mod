@@ -45,13 +45,13 @@ class MoodleInstaller extends BaseInstaller
         'report'             => 'report/{$name}/',
         'repository'         => 'repository/{$name}/',
         'scormreport'        => 'mod/scorm/report/{$name}/',
+        'search'             => 'search/engine/{$name}/',
         'theme'              => 'theme/{$name}/',
         'tinymce'            => 'lib/editor/tinymce/plugins/{$name}/',
         'profilefield'       => 'user/profile/field/{$name}/',
         'webservice'         => 'webservice/{$name}/',
         'workshopallocation' => 'mod/workshop/allocation/{$name}/',
         'workshopeval'       => 'mod/workshop/eval/{$name}/',
-        'workshopform'       => 'mod/workshop/form/{$name}/',
-        'editor_atto_plugin' => 'lib/editor/atto/plugins/{$name}/'
+        'workshopform'       => 'mod/workshop/form/{$name}/'
     );
 }

@@ -1,3 +1,112 @@
+###  2.3.8 ( October 10, 2019 )
+* Fixed sorting issue.
+* Fixed warnings and notices
+
+###  2.3.7 ( October 3, 2019 )
+* Added checks on empty taxonomies
+* Added ability to create a custom template for the search form
+* Fixed issue with duplicate results on Property Overview page
+* Fix issue with WPML translate attribute value string
+
+### 2.3.6 ( September 17, 2018 )
+* Fixed issue with child properties when data wasn't saved
+* Added Support tab in WP-Property Settings
+* Improved behaviour of ud_get_wp_property on non-wp-property pages
+
+### 2.3.5 ( July 9, 2018 )
+* Updated MetaBox library.
+* URL attributes now opens in a new tab.
+* Added option to disable fancybox.
+
+### 2.3.4 ( June 26, 2018 )
+* Disabled legacy API key system.
+* Fixed admin CSS conflicts with Comet Cache accordions.
+* Fixed issues with Media tab on edit property page.
+* Updated wp-tax-post-binding library.
+* Added search by property id on backend and id number on edit property page.
+* Added option to set up area dimension in settings/display tab.
+
+### 2.3.3 ( May 28, 2018 )
+* Fixed WPML compatibility issue with [property_attributes] shortcode.
+* Fixed images issue in Slidehow add-on.
+* Fixed compatibility issue with PHP 5.5 about asp_tags.
+
+### 2.3.2 ( May 17, 2018 )
+* Fixed issue when images weren't attaching to the property
+* Reverted back Importer schedules filter on all properties page on backend
+
+### 2.3.1 ( April 30, 2018 )
+* Fixed issue with image ordering.
+* Added notice to update Terms plugin if not compatible version installed.
+* Updated libraries.
+
+### 2.3.0 ( April 19, 2018 )
+* Code cleaning, warnings, notices fixes.
+* Fixed WPML compatibility issues.
+* Updated Google Maps API settings and docs.
+* Added pre-release updates option.
+* Added default static Properties page. Removed default Property page which was generated on the fly.
+* Fixed Property type was not showing in Search filters.
+* Fixed Property Search issue with attributes which contain slashes.
+* Fixed scroll to the top option on all properties page.
+* Added Feedback form in the Settings tab.
+* Added option to see who is editing the Settings tab right now.
+
+### 2.2.1 
+* Updated `maybe_generate_l10n_script` method to check for existence of file on disk, regenerating in needed.
+* Added term meta UI for standard taxonomies.
+* Added standard [wpp_schools] taxonomy, enabled by default with [WPP_FEATURE_FLAG_WPP_SCHOOLS] feature flag.
+* Improved logic for updating Taxonomies.
+* If WP-Property settings fails to save (due to server error), the Save Settings button is re-enabled to avoid being locked out of saving settings.
+* Disabled legacy "on-the-fly" image regeneration.
+* Added wp-json / wp-rest support to wp-rest-client as an alternative to XML-RPC requests.
+* Added support for single-value taxonomies to be treated as standard meta attributes for display purposes.
+* Added option to export only the attribute fields, groups and property types.
+* Debug log enabled when [WP_DEBUG] and [WP_DEBUG_DISPLAY] constants are defined automatically.
+* Added [WP_PROPERTY_FLAG_ENABLE_STANDARD_ATTRIBUTES_MATCHING] feature flag, hiding the "Enable Standard Attributes Matching and Terms." option by default.
+* When backup is restored from settings, any omitted fields are preserved, allowing partial configuration backups.
+* Added API actions to generate and remove demo listing data, fetched from API.
+* Configured Setup Assistant to load configuration schema from API, setting up default attributes, groups and property types.
+* Added [wpp::localization::instance] filter to customizer/extend the [wpp] variable.
+* Removed WPP_F::register_property_page_url and WPP_F::register_property_single_url.
+* Improved Layout Customizer logic for detecting URL to single property page and main properties page.
+* Added [WPP_FEATURE_FLAG_WPP_LISTING_STATUS] feature flag and standard Status taxonomy.
+* Serialized property meta fields are now automatically unserialized.
+* Added sticky-tab selection to Property Settings page. Selected tab stored in [sessionStorage].
+* Added [WPP_FEATURE_FLAG_SETTINGS_BACKUPS] feature flag, enabled by default. Feature automatically creates backups of plugin settings.
+* Added [WPP_FEATURE_FLAG_DISABLE_EDITOR] feature flag which hides the native Post Content editor.
+* Added [WPP_FEATURE_FLAG_WPP_CATEGORICAL] and [WP_PROPERTY_FLAG_WPP_LISTING_LABEL] feature flags, which enable [wpp_categorical] and [wpp_listing_label] taxonomies. 
+* Fixes to Site API registration process. 
+* Implemented [WP_PROPERTY_LEGACY_META_ATTRIBUTES] feature flag, disabling legacy meta UI.
+* Improved UX for viewing property objects by using a JSON viewer library.
+* Added Feature flags to help tab to help understand what features are enabled.
+* Fixed a minor issue with Supermap trying to load a non-existant map pin.
+* Bundled Supermap and Agents features.
+* Enabled `property_location` taxonomy which automatically creates hierarchial location terms during address validation.
+* Hiding advanced legacy options Single Template selection, Default Property Page, Default Phone Number and Widget Sidebars.
+* Added `ccampbell/chromephp` logger.
+* Added greater support for Layouts.
+* Addinng logic to handle property_type link between Taxonomy and legacy attribute.
+* Fixed issue with property_overview.css loading even when CSS loading is disabled.
+* Fix to Grunt build file, referencing some missing files during LESS build. Removed all legacy front-end style/script files from build.
+* Added wpp.public.v2.3.css / wpp.public.v2.3.less styles to handle all the new front-end styles.
+* Added `wpp::property_types` filter, utilized on admin UI only for now.
+* Fixed missing Properties menu items on first plugin activation. 
+
+### 2.2.0.3 ( December 12, 2017 )
+* Fixed history pagination for [property_overview] shortcode.
+
+### 2.2.0.2 ( May 22, 2017 )
+* Added settings search in Settings tab.
+* Updated/fixed users capabilities for Power Tools add-on.
+
+### 2.2.0.1 ( December 13, 2016 )
+* Compatibility with WordPress 4.7
+
+### 2.2.0 ( August 31, 2016 )
+* Fixed issue with Google Map functionality.
+* Added options for Google API Keys (browser and server).
+
 ### 2.1.9 ( July 27, 2016 )
 * Added Date Input range Search Input.
 * Fixed Google Maps Api key issue.

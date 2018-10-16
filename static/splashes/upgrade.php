@@ -54,9 +54,10 @@ wp_cache_flush();
     <h3><?php printf( __( 'WP-Property %s important changes', ud_get_wp_property()->domain ), ud_get_wp_property( 'version' ) ); ?>:</h3>
 
     <ul>
-      <li>Added default Search Input and Data Entry types for Property Attributes on first WP-Property install.</li>
-      <li>Fixed default list of Property Types on first WP-Property install.</li>
-      <li>Fixed issue with duplicated Currency symbol on Single Property page.</li>
+      <?php $changes = wpp_get_update_changes();
+      foreach ($changes as $change) : ?>
+        <li><?php echo $change; ?></li>
+      <?php endforeach; ?>
     </ul>
 
   </div>
@@ -73,7 +74,7 @@ wp_cache_flush();
 
       <p><?php _e( 'In new version of WP-Property all your premium features are separate plugins. If you are upgrading from old WP-Property ( < 2.0.0 ) you will need to install and activate them one more time.', ud_get_wp_property()->domain ); ?></p>
 
-      <p><?php printf( __( 'After you purchased the product, visit your <a href="%s">UD Account</a>. You will find license keys and download links for all your purchased add-ons. Download plugins to your computer and Upload as new plugin on your site.', ud_get_wp_property()->domain ), 'https://www.usabilitydynamics.com/account' ); ?></p>
+      <p><?php printf( __( 'After you get the product, visit your <a href="%s">UD Account</a>. You will find license keys and download links for all your add-ons. Download plugins to your computer and Upload as new plugin on your site.', ud_get_wp_property()->domain ), 'https://www.usabilitydynamics.com/account' ); ?></p>
 
     </div>
 
