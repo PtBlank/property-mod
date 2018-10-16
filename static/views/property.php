@@ -48,7 +48,7 @@
       initialize_this_map();
 
 
-    });
+    };
 
 
 
