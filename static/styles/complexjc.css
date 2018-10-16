@@ -1,0 +1,163 @@
+/* Changes for mobile devices */
+@media (max-width: 1000px){
+html,body {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  overflow-x: hidden !important;}
+div#container {
+  float: none !important;}
+#container.complex_container {
+  margin: 0 1em 1em 1em !important;}
+#container.complex_container #content {
+  margin: 0 !important;}
+#primary.widget-area {
+  float: none !important;
+  width: auto !important;
+  padding-right: 2em !important;
+  border: 1px solid #a8a8a8 !important;
+  margin-left: 1em !important;
+  margin-right: 1em !important;}
+.responsive-tabs-wrapper {
+  width: auto !important;
+  margin-top: 1em !important;}
+.singular .entry-content {
+  width: 100% !important;}	
+#container.complex_container {
+  width: 95% !important;}
+}
+
+/* Changes for widget area */
+body.single-property #primary.widget-area {
+  float: right;
+  width: 22%;
+  padding: 1% 1em 0 1em;
+  border: 3px solid #000;
+  margin: 3% 4% 0 0;
+  font-size: 115%;}
+.widget-title {
+  font-size: 1em;}
+
+.cntctfrm_one_column, .cntctfrm_column {
+  max-width: 100%;
+  margin-top: .5em;}
+.cntctfrm_label, .cntctfrm_input {
+  max-width: 80%;}
+.cntctfrm_input {
+  margin-top: .3em;
+  margin-bottom: .6em;}
+.cntctfrm_label_subject::before {
+  content: "Unit Size /";}  
+  
+.cntctfrm_contact_form input.cntctfrm_contact_submit {
+  margin-bottom: 0;
+  padding: .4em 2em;
+  background: #569ad4;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5em;}
+.cntctfrm_contact_form input.cntctfrm_contact_submit:hover {
+  background: #2d74b1;}  
+#cntctfrm_thanks {
+  font-weight: bold !important;
+  font-style: italic !important;
+  color: #01009a !important;
+  margin-top: 1em !important;}
+  
+/* All list changes */
+ul.xoxo {
+  margin-left: 0 !important;}
+ul.slides {
+  align-items: center !important;}
+ul {
+  list-style: none !important;}
+  
+/* Changes for complex name and description */
+#main {
+  padding-top: 0;}
+.wpp_the_content p {
+  text-align: justify;}
+h1.property-title.entry-title {
+  padding-bottom: 0;}
+
+/* Changes for column one */
+body.single-property #container {
+  width: 60%;
+  margin: 0 0 2em 4%;
+  float: left;
+  padding: 0;}
+body.single-property #container #content {
+  margin: 0;
+  width: 100%;}
+  
+/* Changes for specifications section */
+.entry-content li {
+  border-bottom: 1px dashed #CFCBCB !important;
+  padding-left: 1em !important;
+  list-style: none !important;
+  font-size: 120%;}
+.attribute {
+  color: #000084 !important;
+  font-weight: bold !important;}
+.singular .entry-content {
+  margin-left: 0;
+  width: 90%;
+  padding: 0;}
+.singular .hentry {
+  padding-top: 1em !important;}
+div.entry-content span.value {
+  font-weight: normal;
+  position: relative;
+  left: 1em;}
+
+/* Tabby Plugin Changes */
+#tablist1-tab1 {
+  border-bottom: 0 !important;}
+#tablist1-tab2 {
+  border-bottom: 0 !important;}
+#tablist1-tab3 {
+  border-bottom: 0 !important;}
+.tabcontent.responsive-tabs__panel.responsive-tabs__panel--active {
+  padding-bottom: 20px !important;}
+.responsive-tabs .responsive-tabs__list__item {
+  color: #1982d1 !important;
+  background: #ddd !important;}
+.responsive-tabs .responsive-tabs__list__item:hover {
+  color: #000 !important;}
+.responsive-tabs .responsive-tabs__list__item--active, .responsive-tabs .responsive-tabs__list__item--active {
+  background: #fff !important;
+  color: #000 !important;}
+
+/* Infowindow Changes */
+#infowindow ul.wpp_google_maps_infobox .wpp_google_maps_attribute_row span.attribute {
+  display: none !important;}
+#infowindow span.value::before {
+  content: "U-Store " !important;}
+#infowindow span.value {
+  position: relative !important;
+  left: 0 !important;}
+#infowindow ul.wpp_google_maps_infobox li.wpp_google_maps_attribute_row.wpp_fillter_element {
+  display: none !important;}
+#infowindow ul.wpp_google_maps_infobox li.wpp_google_maps_attribute_row {
+  border-bottom: 1px solid #f1f1f1 !important;  }
+#infowindow li.wpp_google_maps_attribute_row.wpp_filter_element {
+	display: none;}
+ 
+/* Vacant Units Changes */
+.wpp_row_view .property_title {
+  font-weight: bold;
+  color: #5467f9 !important;
+  font-size: 1.7em !important;}
+.wpp_row_view ul.wpp_overview_data .property_price {
+  color: #677179 !important;
+  height: auto;
+  padding-bottom: 10px;
+  padding-left: 1.5em;}
+ .wpp_row_view ul.wpp_overview_data .property_description {
+  font-style: italic;}
+.wpp_row_view ul.wpp_overview_data li {
+  border-bottom: none !important;}
+  
+.pay_button {
+box-shadow: 0 3px #999 !important;}
