@@ -1,7 +1,10 @@
 <?php
-
 /**
  * Shortcode: [property_attribute]
+ *
+ * ### Usage:
+ *
+ *    [property_attribute attribute=post_content]
  *
  * @since 2.1
  */
@@ -153,11 +156,18 @@ namespace UsabilityDynamics\WPP {
           ) );
         }
 
+        // parse shortcodes for the post_content field
+        if( $attribute === 'post_content' && $value ) {
+          $value = do_shortcode( $value );;
+        }
+
         if( !empty( $args[ 'before' ] ) ) {
           $return[ 'before' ] = html_entity_decode( $args[ 'before' ] );
         }
 
         $return[ 'value' ] = apply_filters( 'wpp_property_attribute_shortcode', $value, $this_property );
+        // Getting translation
+        $return[ 'value' ] = apply_filters( 'wpp::attribute::value', $value, $attribute );
 
         if( $args[ 'strip_tags' ] == "true" && !empty( $return[ 'value' ] ) ) {
           $return[ 'value' ] = strip_tags( $return[ 'value' ] );

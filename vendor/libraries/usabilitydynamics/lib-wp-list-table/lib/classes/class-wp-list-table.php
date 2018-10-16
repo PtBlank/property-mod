@@ -537,7 +537,7 @@ namespace UsabilityDynamics\WPLT {
                   $_query[ 'meta_query' ] = array();
                 }
 
-                if( is_array( $q['value'] ) && !in_array( $map['compare'], array( 'NOT IN', 'IN' ) ) && 'BETWEEN' != $map['compare'] ) {
+                if( is_array( $q['value'] ) && !in_array( $map['compare'], array( 'NOT IN', 'IN' ) ) ) {
                   $map['compare'] = 'IN';
                 }
 
@@ -613,6 +613,12 @@ namespace UsabilityDynamics\WPLT {
 
                   $_query['date_query'][0]['inclusive'] = true;
                 }
+
+                break;
+
+              case apply_filters( 'wp_list_table_filter_map_class', null ):
+
+                $_query = apply_filters( 'wp_list_table_filter_query_'.apply_filters( 'wp_list_table_filter_map_class', null ), $_query, $q, $map );
 
                 break;
             }

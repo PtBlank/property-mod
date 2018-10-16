@@ -7,6 +7,8 @@
  */
 namespace UsabilityDynamics\WPP {
 
+  use WPP_F;
+
   if( !class_exists( 'UsabilityDynamics\WPP\Property_Factory' ) ) {
 
     class Property_Factory {
@@ -15,9 +17,13 @@ namespace UsabilityDynamics\WPP {
        * Returns property
        *
        * @since 1.11
+       *
        * @todo Code pertaining to displaying data should be migrated to prepare_property_for_display() like :$real_value = nl2br($real_value);
        * @todo Fix the long dashes - when in latitude or longitude it breaks it when using static map
        *
+       * @param $id
+       * @param bool $args
+       * @return array|bool|mixed
        */
       static public function get( $id, $args = false ) {
         global $wp_properties;
@@ -48,6 +54,10 @@ namespace UsabilityDynamics\WPP {
 
           // Do nothing here since we already have data from cache!
 
+          if( is_array( $property ) ) {
+            $property['_cached'] = true;
+          }
+
         } else {
 
           $property = array();
@@ -59,7 +69,7 @@ namespace UsabilityDynamics\WPP {
           }
 
           //** Figure out what all the editable attributes are, and get their keys */
-          $editable_keys = array_keys( array_merge( (array)$wp_properties[ 'property_meta' ], (array)$wp_properties[ 'property_stats' ] ) );
+          $editable_keys = array_keys( array_merge( isset( $wp_properties[ 'property_meta' ] ) ? (array) $wp_properties[ 'property_meta' ] : array(), (array)$wp_properties[ 'property_stats' ] ) );
 
           //** Load all meta keys for this object */
           if( $keys = get_post_custom( $id ) ) {
@@ -92,27 +102,32 @@ namespace UsabilityDynamics\WPP {
 
                 default:
                   $real_value = $value;
-                  break;
+                break;
 
               }
 
               // Handle keys with multiple values
-              if( count( $value ) > 1 ) {
+              if( is_array($value) && count( $value ) > 1 ) {
                 $property[ $key ] = $value;
               } else {
                 $property[ $key ] = $real_value;
               }
+
+              $property[ $key ] = maybe_unserialize( $property[ $key ] );
 
             }
           }
 
           $property = array_merge( $property, $post );
 
+          // Early get_property, before adding standard/computed fields.
+          $property = apply_filters( 'wpp::property::early_extend', $property, $args );
+
           //** Make sure certain keys were not messed up by custom attributes */
           $property[ 'system' ]  = array();
           $property[ 'gallery' ] = array();
 
-          $property[ 'wpp_gpid' ]  = \WPP_F::maybe_set_gpid( $id );
+          $property[ 'wpp_gpid' ]  = WPP_F::maybe_set_gpid( $id );
           $property[ 'permalink' ] = get_permalink( $id );
 
           //** Make sure property_type stays as slug, or it will break many things:  (widgets, class names, etc)  */
@@ -168,7 +183,14 @@ namespace UsabilityDynamics\WPP {
          * Load all attached images and their sizes
          */
         if( $load_gallery ) {
-          $gallery = self::get_images( $id, $cache );
+          $_meta_attached = get_post_meta($id, 'wpp_media');
+          if(is_array($_meta_attached) && count($_meta_attached)){
+            $_meta_attached = array_map('intval', $_meta_attached);
+            $gallery = self::get_images( $_meta_attached, $cache, 'ids');
+          }
+          else{
+            $gallery = self::get_images( $id, $cache);
+          }
           $property[ 'gallery' ] = !empty( $gallery ) ? $gallery : false;
         }
 
@@ -180,7 +202,7 @@ namespace UsabilityDynamics\WPP {
 
         //** Convert to object */
         if( $return_object ) {
-          $property = \WPP_F::array_to_object( $property );
+          $property = WPP_F::array_to_object( $property );
         }
 
         return $property;
@@ -493,9 +515,9 @@ namespace UsabilityDynamics\WPP {
        * @param bool $cache
        * @return array
        */
-      static public function get_images( $id, $cache = true ) {
-
-        if( $cache && $data = wp_cache_get( $id, 'property_images' ) ) {
+      static public function get_images( $id, $cache = true, $type = 'parent' ) {
+        $cache_id = is_array($id) ? md5(json_encode($id)) : $id;
+        if( $cache && $data = wp_cache_get( $cache_id, 'property_images_' . $type ) ) {
 
           // Do nothing here.
 
@@ -503,13 +525,32 @@ namespace UsabilityDynamics\WPP {
 
           $data = array();
 
-          $attachments = get_children( array(
-            'post_parent' => $id,
-            'post_type' => 'attachment',
-            'post_mime_type' => 'image',
-            'orderby' => 'menu_order ASC, ID',
-            'order' => 'ASC'
-          ) );
+          switch ($type) {
+            case 'ids':
+              $attachments = get_posts( array(
+                'post_type' => 'attachment',
+                'include'   => (array) $id,
+                'post_mime_type' => 'image',
+                'orderby' => 'post__in',
+                'order' => 'ASC'
+              ) );
+              foreach ($attachments as $key => $attachment) {
+                $attachments[$attachment->ID] = $attachment;
+                unset($attachments[$key]);
+              }
+              break;
+              
+            case 'parent':
+            default:
+              $attachments = get_children( array(
+                'post_parent' => $id,
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image',
+                'orderby' => 'menu_order ASC, ID',
+                'order' => 'ASC'
+              ) );
+              break;
+          }
 
           /* Get property images */
           if( !empty( $attachments ) ) {
@@ -527,7 +568,7 @@ namespace UsabilityDynamics\WPP {
             }
           }
 
-          wp_cache_add( $id, $data, 'property_images' );
+          wp_cache_add( $cache_id, $data, 'property_images_' . $type );
 
         }
 
